@@ -1,0 +1,835 @@
+" This file will be loaded at the end of .vimrc.
+" This file is designed to add your own vim scripts or override the exVim's .vimrc settings.
+
+"/////////////////////////////////////////////////////////////////////////////
+" Default colorscheme setup
+"/////////////////////////////////////////////////////////////////////////////
+
+set background=dark
+if has('gui_running')
+    let g:solarized_contrast='high'
+    let g:solarized_visibility='high'
+else
+    set t_Co=256 " make sure our terminal use 256 color
+    " let g:solarized_termcolors = 256
+endif
+" colorscheme solarized
+" colorscheme exlightgray
+" colorscheme gruvbox
+" colorscheme monokai
+colorscheme sublimemonokai
+if g:colors_name=='solarized'
+    if &background=='dark'
+        hi CursorLineNr term=bold ctermfg=190 gui=bold guifg=Yellow
+    endif
+endif
+" solarized{
+" ---------------------------------------------------
+call togglebg#map("<C-F5>")
+" }
+
+" lua版本信息，ex-config\after\syntax\lua.vim需要读取以下变量，vim8.0缺少以下变量
+let lua_version = 5
+let lua_subversion = 3
+
+" if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+    " set fileencodings=ucs-bom,utf-8,chinese,latin1
+" endif
+set fileencodings=utf-8,chinese,latin1
+set encoding=utf-8
+set termencoding=utf-8
+
+" redhat{
+set nocompatible	" Use Vim defaults (much better!)
+set backspace=indent,eol,start		" allow backspacing over everything in insert mode
+" set ai			" always set autoindenting on
+" set backup		" keep a backup file
+set viminfo='20,\"50	" read/write a .viminfo file, don't store more
+" than 50 lines of registers
+set history=50		" keep 50 lines of command line history
+set ruler		" show the cursor position all the time
+
+" Only do this part when compiled with support for autocommands
+if has("autocmd")
+    augroup redhat
+        " autocmd!
+        " In text files, always limit the width of text to 78 characters
+        " 设置txt文件的屏幕宽度为78个字符
+        autocmd BufRead *.txt set tw=78
+        " When editing a file, always jump to the last cursor position
+        " 编辑文件时，总是跳到上一次光标位置
+        " autocmd BufReadPost *
+                    " \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+                    " \   exe "normal! g`\"" |
+                    " \ endif
+        " don't write swapfile on most commonly used directories for NFS mounts or USB sticks
+        " 对于NFS文件系统或USB存储设备，不要写入swap文件
+        autocmd BufNewFile,BufReadPre /media/*,/run/media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
+        " start with spec file template
+        " 使用template.spec启动
+        " autocmd BufNewFile *.spec 0r /usr/share/vim/vimfiles/template.spec
+    augroup END
+endif
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+" if &t_Co > 2 || has("gui_running")
+    " syntax on
+    " set hlsearch
+" endif
+
+" 设定xterm颜色，最好用默认的,用set_xterm屏蔽掉
+" if &term=="xterm" && has ("set_xterm")
+"      set t_Co=8
+"      set t_Sb=[4%dm
+"      set t_Sf=[3%dm
+" endif
+
+" Don't wake up system with blinking cursor:
+" http://www.linuxpowertop.org/known.php
+let &guicursor = &guicursor . ",a:blinkon"
+" }redhat
+
+set number
+set nocompatible
+" 关闭提示音
+" set noeb
+autocmd GuiEnter * set vb t_vb=
+set cul "高亮光标所在行
+set cuc "高亮光标所在列
+" hi CursorColumn term=reverse cterm=reverse ctermbg=Black ctermfg=LightGrey
+" set nocuc 如果列高亮在securecrt不正常，要设置securecrt的apperance高亮方式为bold方式，最终发现设置xterm就好了"
+" hi CursorLine term=reverse cterm=reverse ctermbg=Black ctermfg=LightGrey
+" term=underline cterm=underline guibg=Grey9 会显示下划线，
+" 如果term和cterm指定其他选项（reverse、standout、bold），则高亮为条形框或者加粗"
+
+"状态栏显示，如果打开taglist会自动隐藏
+set wildmenu                           " 增强命令行补全，可用<C-N> <C-P>选择
+set wildmode=longest:full,list:full    " 命令行补全模式，最长字串优先
+set ruler      " 显示标尺
+set autoindent " 自动缩进
+set cindent    " c缩进
+" Tab键的宽度
+set tabstop=4
+" 统一缩进为4
+set softtabstop=4
+set shiftwidth=4
+set wrap
+let &showbreak='➣➣ '
+set ignorecase smartcase
+" 不用空格代替制表符
+" set noexpandtab
+" 在行和段开始处使用制表符
+" set smarttab
+" 历史记录数
+set history=1000
+" 搜索逐字符高亮
+set hlsearch
+set incsearch
+" 语言设置
+set langmenu=zh_CN.UTF-8
+set helplang=cn
+" 总是显示状态行
+set laststatus=2
+" 2:总显示最后一个窗口的状态行；设为1则窗口数多于一个的时候显示最后一个窗口的状态行；0不显示状态行
+" 禁用windows下的菜单快捷键alt
+set winaltkeys=no
+"statusline
+set statusline=%0*[%n]                                  "buffernr
+set statusline+=%0*\ %<%F\                              "文件路径
+set statusline+=%0*\ %y\                                "文件类型
+set statusline+=%0*\ %{''.(&fenc!=''?&fenc:&enc).''}    "编码1
+set statusline+=%0*%{(&bomb?\",BOM\":\"\")}             "编码2
+set statusline+=%0*\ %{&ff}\                            "文件系统(dos/unix..)
+set statusline+=%0*\ %=Ln:%l/%L(%p%%)\                  "光标所在行号/总行数 (百分比)
+set statusline+=%0*\ Col:%c\                            "光标所在列
+set statusline+=%0*\ %m%r%w\%P\                         "Modified? Read only? Top/bottom
+
+" :set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+" powerline{
+" ---------------------------------------------------
+" powerline 必须设置256色
+" set t_Co=256
+" set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+" set fillchars+=stl:\ ,stlnc:\
+" }
+" ---------------------------------------------------
+
+" airline{
+" ---------------------------------------------------
+" airline会导致vim卡顿，酌情使用！
+" airline，比powerline更优秀，需要导入powerline字体，纯脚本实现
+" set linespace=0
+let g:airline_theme="dark"
+" let g:airline_solarized_normal_green = 1
+" let g:airline_solarized_dark_inactive_border = 1
+
+" powerline字体 必须设置此项
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+" let g:airline_symbols.crypt = 'C'
+" let g:airline_symbols.maxlinenr = 'Ξ'
+" let g:airline_symbols.paste = 'ρ'
+" let g:airline_symbols.spell = '$'
+" let g:airline_symbols.notexists = 'T'
+" let g:airline_symbols.whitespace = 'Ξ'
+" let g:airline_symbols.branch = ''
+
+" powerline symbols
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
+" let g:airline_symbols.branch = ''
+" let g:airline_symbols.readonly = ''
+" let g:airline_symbols.linenr = '☰'
+" securecrt不能正常显示太极符号，因此在CRT上要替换成全等号≌
+let g:airline_symbols.linenr = '≡'
+" let g:airline_symbols.maxlinenr = ''
+
+" let g:airline_extensions = ['branch', 'tabline']
+" let g:airline#extensions#hunks#enabled = 1
+let g:airline_detect_modified = 1
+let g:airline_detect_paste = 1
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#wordcount#enabled = 0
+
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#bufferline#overwrite_variables = 1
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+" let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline_section_b = '%-0.10{getcwd()}'
+" let g:airline_section_b = airline#section#create_left(['ffenc','file'])
+" let g:airline_section_b = "%{airline#ultil#wrap(airline#externsions#branch#get_head(),0)}"    | "default
+" let g:airline_section_c = "%{fnamemodify(bufname('%'),':p:.')}"
+" let g:airline_section_c = '%{expand("%:t")}' | " default  %t
+" }airline
+" ---------------------------------------------------
+
+" UltiSnips{
+" ---------------------------------------------------
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<C-T>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsUsePythonVersion = 3
+" UltiSnips}
+" ---------------------------------------------------
+
+" neocomplete: invoke when you insert words
+" ---------------------------------------------------
+" Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+            \ 'default' : '',
+            \ 'vimshell' : $HOME.'/.vimshell_hist',
+            \ 'scheme' : $HOME.'/.gosh_completions'
+            \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+    return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+    " For no inserting <CR> key.
+    "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+" }neocomplete
+" ---------------------------------------------------
+
+" auto-pairs{
+" ---------------------------------------------------
+if WINDOWS()
+    let g:AutoPairsShortcutToggle = 'ð'     | "  '<M-P>'
+    let g:AutoPairsShortcutFastWrap = 'å'   | "  '<M-E>'
+    let g:AutoPairsShortcutJump = 'î'       | "  '<M-N>'
+    let g:AutoPairsShortcutBackInsert = 'â' | "  '<M-B>'
+else
+    let g:AutoPairsShortcutToggle = '<M-P>'
+    let g:AutoPairsShortcutFastWrap = '<M-E>'
+    let g:AutoPairsShortcutJump = '<M-N>'
+    let g:AutoPairsShortcutBackInsert = '<M-B>'
+endif
+let g:AutoPairsFlyMode=0
+" }
+
+" nerdtree{
+" ---------------------------------------------------
+map <F2> :NERDTreeToggle<CR>
+let NERDTreeChDirMode = 2
+" 箭头符号：▸ ▾ ◄ ► ▲ ▼ ◀ ▶ powerline和微软雅黑都能识别
+let NERDTreeAutoCenter=0
+let g:NERDTreeDirArrowExpandable = '▶'
+let g:NERDTreeDirArrowCollapsible = '▼'
+let NERDTreeShowLineNumbers=1
+let NERDTreeShowBookmarks=1
+let NERDTreeShowHidden=1
+" autocmd vimenter * :NERDTree Y:\
+" 设置打开vim的时候默认打开nerdtree
+" let g:nerdtree_tabs_open_on_console_startup = 1
+" autocmd StdinReadPre * let s:std_in=1
+" 无参数运行vim时运行NERDTree
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" 当打开目录时运行NERDTree
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" }
+
+" Tagbar{
+" tagbar会导致redir异常
+nmap <silent> <F4> :TagbarToggle<CR>
+let g:tagbar_iconchars = ['▶', '▼']
+let g:tagbar_ctags_bin = 'ctags'
+let g:tagbar_autofocus = 1
+let g:tagbar_right = 1
+let g:tagbar_expand = 1
+let g:tagbar_compact = 1
+let g:tagbar_singleclick = 1
+let g:tagbar_autoshowtag = 1
+let g:tagbar_width = 30
+let g:tagbar_sort = 0
+" }Tagbar
+
+" Taglist (需要安装ctags)
+" let Tlist_Auto_Open=1
+" exvim已经默认F4为Tlist快捷键
+" nmap <unique> <silent> <F4> :TlistToggle<CR>	"按下F4就可以呼出了 map <F4> :silent! Tlist<CR>
+let Tlist_Ctags_Cmd = 'ctags'
+let Tlist_Show_One_File = 1		"不同时显示多个文件的tag，只显示当前文件的
+let Tlist_Exit_OnlyWindow = 1	"如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Use_Right_Window = 1	"在右侧窗口中显示taglist窗口
+
+" minibufexpl{
+" 切换窗口快捷键"
+" :nmap <S-F5> <C-Tab>
+" F5与lookupfile冲突
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+" 如果设置以下快捷键，会影响bufexplorer的快捷键\be \bv"
+" :nmap <Leader>c :CMiniBufExplorer<CR>
+" :nmap <Leader>u :UMiniBufExplorer<CR>
+" :nmap <Leader>t :TMiniBufExplorer<CR>
+" }
+
+" lookupfile
+" ---------------------------------------------------
+"  vim 7.4.565以上的版本存在bug会导致nerdtree切换CWD时，打开lookupfile报错
+"  <A-S-L>被EXSymbol占用了
+" nmap <unique> <silent> <A-S-L> <Plug>LookupFile
+" imap <unique> <silent> <A-S-L> <C-O><Plug>LookupFile
+let g:LookupFile_MinPatLength = 2               "最少输入2个字符才开始查找
+let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
+let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
+let g:LookupFile_AlwaysAcceptFirst = 1          "回车打开第一个匹配项目
+let g:LookupFile_AllowNewFiles = 0              "不允许创建不存在的文件
+" if filereadable("./filenametags")                "设置tag文件的名字
+    " let g:LookupFile_TagExpr = '"./filenametags"'
+" endif
+"映射LookupFile为,lk
+" nmap <unique> <silent> <leader>lk :LUTags<cr>
+"映射LUBufs为,lb
+" nmap <unique> <silent> <leader>lb :LUBufs<cr>
+"映射LUWalk为,lw
+" nmap <unique> <silent> <leader>lw :LUWalk<cr>
+" nnoremap <unique> <S-F5> :!genfiletags.sh<CR>
+
+" ctrlp
+" ---------------------------------------------------
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPBuffer'
+" let g:ctrlp_cmd = 'exe "CtrlP".get(["", "Buffer", "MRU"], v:count)'
+" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_user_command = 'rg %s -g "" --files'
+if WINDOWS()
+    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+    let g:ctrlp_custom_ignore = {
+                \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+                \ 'file': '\v\.(exe|so|dll)$',
+                \ 'link': 'some_bad_symbolic_links',
+                \ }
+endif
+if LINUX()
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.gz,*.bz2     " MacOSX/Linux
+    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+endif
+
+" LeaderF {
+" ---------------------------------------------------
+nnoremap <unique> <leader>ll :LeaderfLine<CR>
+nnoremap <unique> <leader>sf :vimgrep  %<left><left>
+" } LeaderF
+
+" BufExplorer{
+" ---------------------------------------------------
+" buffer 切换
+" nnoremap <unique> <silent> <F6> :bn<CR>
+" nnoremap <unique> <silent> <S-F6> :bd<CR>
+" nnoremap <unique> <silent> <S-L> :bn<CR>
+" nnoremap <unique> <silent> <S-H> :bp<CR>
+" nnoremap <silent> <S-Left> H
+" nnoremap <silent> <S-Right> L
+let g:bufExplorerDefaultHelp=1       " Do not show default help.
+let g:bufExplorerShowRelativePath=1  " Show relative paths.
+let g:bufExplorerSortBy='mru'        " Sort by most recently used.
+let g:bufExplorerSplitHorzSize=10
+let g:bufExplorerSplitRight=1        " Split left.
+let g:bufExplorerSplitVertical=1     " Split vertically.
+let g:bufExplorerSplitVertSize = 30  " Split width
+let g:bufExplorerUseCurrentWindow=1  " Open in new window.
+let g:bufExplorerVersionWarn=1
+
+" DISABLE
+" autocmd BufWinEnter \[Buf\ List\] setl nonumber "打开BufExplorer时隐藏行号
+" \bs被exvim定义为CtrlPBuffer快捷键
+" 重新定义了下面3个快捷键之后，\be \bv会失效"
+" nnoremap <silent> <F7> :BufExplorer<CR>
+" nnoremap <silent> <A-F7> :BufExplorerHorizontalSplit<CR>
+" nnoremap <silent> <C-F7> :BufExplorerVerticalSplit<CR>
+" }BufExplorer
+
+" ---------------------------------------------------
+
+" vim tab
+" ---------------------------------------------------
+" <leader>bd is mapped EXbd by exvim
+nnoremap <unique> <silent> <F6>         :bp<CR>
+nnoremap <unique> <silent> <F7>         :bn<CR>
+nnoremap <unique> <silent> <F10>       :tabnew<CR>
+nnoremap <unique> <silent> <S-F10>       :tabclose<CR>
+nnoremap <unique> <silent> <leader>bn   :bn<CR>
+nnoremap <unique> <silent> <leader>bp   :bp<CR>
+nnoremap <unique> <silent> <leader>tn   :tabn<CR>
+nnoremap <unique> <silent> <leader>tp   :tabp<CR>
+" tabnew相当于tabe tabedit"
+
+" DISABLE
+" alt-num快捷键和easyhl冲突
+" :nn <M-1> 1gt
+" :nn <M-2> 2gt
+" :nn <M-3> 3gt
+" :nn <M-4> 4gt
+" :nn <M-5> 5gt
+" :nn <M-6> 6gt
+" :nn <M-7> 7gt
+" :nn <M-8> 8gt
+" :nn <M-9> 9gt
+" :nn <M-0> :tablast<CR>
+:nn <unique> <leader>b1  :b1<CR>
+:nn <unique> <leader>b2  :b2<CR>
+:nn <unique> <leader>b3  :b3<CR>
+:nn <unique> <leader>b4  :b4<CR>
+:nn <unique> <leader>b5  :b5<CR>
+:nn <unique> <leader>b6  :b6<CR>
+:nn <unique> <leader>b7  :b7<CR>
+:nn <unique> <leader>b8  :b8<CR>
+:nn <unique> <leader>b9  :b9<CR>
+
+:nn <unique> <leader>t1  1gt
+:nn <unique> <leader>t2  2gt
+:nn <unique> <leader>t3  3gt
+:nn <unique> <leader>t4  4gt
+:nn <unique> <leader>t5  5gt
+:nn <unique> <leader>t6  6gt
+:nn <unique> <leader>t7  7gt
+:nn <unique> <leader>t8  8gt
+:nn <unique> <leader>t9  9gt
+" }
+
+" winmanager
+" ---------------------------------------------------
+" 设置winmanager，可以合并Taglist和NERDtree，实测不好用，很鸡肋的插件
+" 设置界面分割
+let g:winManagerWindowLayout = "TagList|NERDtree"
+" 设置winmanager的宽度，默认为25
+let g:winManagerWidth = 30
+" 定义打开关闭winmanager快捷键为F8
+" nmap <silent> <F8> :WMToggle<cr>
+" 在进入vim时自动打开winmanager
+let g:AutoOpenWinManager = 1
+
+" ctags_cscope
+" ---------------------------------------------------
+map <F11> :! ctags -R --languages=c,javascript,java,python<CR>
+
+" 按F12，生成tags和cscope文件
+map <unique> <F12> :call Do_CsTag()<CR>
+nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>:copen<CR>
+nmap <C-@>i :cs find i <C-R>=expand("<cfile>")<CR><CR>:copen<CR>
+nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+
+if(has("win16") || has("win95") || has("win32") || has("win64"))
+    let g:iswindows=1
+else
+    let g:iswindows=0
+endif
+
+function! Do_CsTag()
+    let dir = getcwd()
+    if filereadable("tags")
+        if(g:iswindows==1)
+            let tagsdeleted=delete(dir."\\"."tags")
+        else
+            let tagsdeleted=delete("./"."tags")
+        endif
+        if(tagsdeleted!=0)
+            echohl WarningMsg | echo "Fail to do tags! I cannot delete the tags" | echohl None
+            return
+        endif
+    endif
+    if has("cscope")
+        silent! execute "cs kill -1"
+    endif
+    if filereadable("cscope.files")
+        if(g:iswindows==1)
+            let csfilesdeleted=delete(dir."\\"."cscope.files")
+        else
+            let csfilesdeleted=delete("./"."cscope.files")
+        endif
+        if(csfilesdeleted!=0)
+            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.files" | echohl None
+            return
+        endif
+    endif
+    if filereadable("cscope.out")
+        if(g:iswindows==1)
+            let csoutdeleted=delete(dir."\\"."cscope.out")
+        else
+            let csoutdeleted=delete("./"."cscope.out")
+        endif
+        if(csoutdeleted!=0)
+            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.out" | echohl None
+            return
+        endif
+    endif
+    if(executable('ctags'))
+        " silent! execute "!ctags -R --c-types=+p --fields=+S *"
+        silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
+    endif
+    if(executable('cscope') && has("cscope") )
+        if(g:iswindows==1)
+            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.java,*.cs >> cscope.files"
+        else
+            silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
+        endif
+        silent! execute "!cscope -bq"
+        execute "normal :"
+        if filereadable("cscope.out")
+            execute "cs add cscope.out"
+        endif
+    endif
+endfunction
+" }ctags_cscope
+" ---------------------------------------------------
+
+" 折叠
+set foldmethod=indent
+" set nofen
+" set foldmarker={,}
+
+" create_file{
+" ---------------------------------------------------
+" 新建.c,.h,.sh,.java文件，自动插入文件头
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()"
+func! SetTitle()
+    if &filetype == 'sh'
+        call setline(1, "\#!/bin/bash")
+        call append(line("."),   "\#########################################################################")
+        call append(line(".")+1, "\# File Name: ".expand("%"))
+        call append(line(".")+2, "\# Author: Edward.Tang")
+        call append(line(".")+3, "\# mail:   @163.com")
+        call append(line(".")+4, "\# Created Time: ".strftime("%c"))
+        call append(line(".")+5, "\#########################################################################")
+        call append(line(".")+6, "")
+    elseif &filetype == 'c' || &filetype =='cpp'
+        call setline(1, "/*************************************************************************")
+        call append(line("."), "    > File Name: ".expand("%"))
+        call append(line(".")+1, "    > Author: Edward.Tang")
+        call append(line(".")+2, "    > Mail:   @163.com ")
+        call append(line(".")+3, "    > Created Time: ".strftime("%c"))
+        call append(line(".")+4, " ************************************************************************/")
+        call append(line(".")+5, "")
+    endif
+    if &filetype == 'cpp'
+        call append(line(".")+6, "#include <iostream>")
+        call append(line(".")+7, "using namespace std;")
+        call append(line(".")+8, "")
+    endif
+    if &filetype == 'c'
+        call append(line(".")+6, "#include <stdio.h>")
+        call append(line(".")+7, "")
+    endif
+endfunc
+" 新建文件后，自动定位到文件末尾
+autocmd BufNewFile * normal G
+" }create_file
+" ---------------------------------------------------
+
+" 高亮光标所在单词
+" 覆盖exvim.vimrc 534行的取消高亮快捷键
+nnoremap <F8> :match Search /<C-R><C-W>/<CR>
+" mark.vim占用了"nnoremap <leader>m :match Search /<C-R><C-W>/<CR>
+" 取消高亮快捷键
+nnoremap <unique> <S-F8> :match none /<C-R><C-W>/<CR>
+nnoremap <unique> <A-F8> :nohl<CR>
+" mark.vim占用了"nnoremap <leader>n :match none /<C-R><C-W>/<CR>
+
+" mksession
+" ---------------------------------------------------
+:nmap <unique> <C-F8> :mksession!<CR>
+
+" Session.vim
+" ---------------------------------------------------
+nnoremap <unique> <leader>s :SaveSession<space>
+nnoremap <unique> <leader>o :OpenSession<space>
+" 禁止启动时自动加载会话
+let g:session_autoload = 'no'
+let g:session_autosave = 'no'
+
+" DoxygenToolkit{
+" ---------------------------------------------------
+map fg :Dox<cr>
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+let g:DoxygenToolkit_authorName="Tang"
+let g:DoxygenToolkit_licenseTag="GPL license\<enter>"
+let g:DoxygenToolkit_briefTag_funcName = "yes"
+let g:DoxygenToolkit_briefTag_pre = "@brief\t"
+let g:DoxygenToolkit_paramTag_pre = "@param\t"
+let g:DoxygenToolkit_returnTag = "@return\t"
+let g:DoxygenToolkit_undocTag="DEBUG"
+let g:DoxygenToolkit_maxFunctionProtoLines = 30
+let g:doxygen_enhanced_color=1
+
+" DISABLE
+" 单行注释/* ... */
+" nnoremap = <ESC>^i/* <ESC>A */<ESC>
+" 取消单行注释
+" nnoremap - <ESC>^xxx<ESC>$xxx<ESC>
+
+" nnoremap = <ESC>^i//<ESC>
+" nnoremap - <ESC>^xx<ESC>
+" }DoxygenToolkit
+" ---------------------------------------------------
+
+" nerdcommenter{
+" ---------------------------------------------------
+" 注释带1个空格
+let g:NERDSpaceDelims = 1
+let g:NERDRemoveExtraSpaces = 1
+" }nerdcommenter
+" ---------------------------------------------------
+
+" hexmode{
+" ---------------------------------------------------
+" 十六进制模式，来自vim wikia http://vim.wikia.com/wiki/Improved_hex_editing
+nnoremap <unique> <leader>h :Hexmode<CR>
+vnoremap <unique> <leader>h :<C-U>Hexmode<CR>
+" }hexmode
+" ---------------------------------------------------
+
+" 快捷键
+" ---------------------------------------------------
+" 快速退出
+" 与ex-utility冲突
+" nnoremap <leader><ESC> :qa<CR>
+" 设定q为快速退出键
+" nnoremap <unique> q <ESC>:q<CR>
+" nnoremap <unique> q <ESC><ESC>:q<CR>
+nnoremap <unique> <leader>q <ESC>:qa!<CR>
+" 快速正则，查找替换，与 ex-searchcompl冲突
+nnoremap / /\v
+nnoremap <unique> <leader>vr :%s/\v/g<left><left>
+" 切换工作目录为当前文件路径
+nnoremap <unique> <silent> <leader>. :cd %:p:h<CR>
+" TAB切换窗口
+nnoremap <unique> <TAB> <C-W><C-W>
+" 不能设置autochdir，不然每次打开文件都会修改cwd
+" set autochdir
+
+" vim windows{
+" 与exvim.vimrc 565行冲突，与vimrc.plugin ex-utility快捷键冲突，不能用unique属性
+nnoremap <silent> <C-J> <C-W>j
+nnoremap <silent> <C-K> <C-W>k
+nnoremap <silent> <C-H> <C-W>h
+nnoremap <silent> <C-L> <C-W>l
+" nnoremap <silent> j jzz
+" nnoremap <silent> k kzz
+" nnoremap <silent> <C-F> <C-F>M
+" nnoremap <silent> <C-B> <C-B>M
+" }windows
+
+" 切换鼠标模式
+" ---------------------------------------------------
+set mouse=a
+let s:mouse_enable = 1
+function! s:TogMouse()
+    if s:mouse_enable == 0
+        let s:mouse_enable = 1
+        exe "set mouse=" . "a"
+        echohl ModeMsg
+        echo "Mouse is Enabled."
+        echohl Normal
+    else
+        let s:mouse_enable = 0
+        exe "set mouse="
+        echohl ModeMsg
+        echo "Mouse is DISABLE."
+        echohl Normal
+    endif
+endfunction
+command ToggleMouse :call s:TogMouse()
+nnoremap <unique> <leader><leader>m :ToggleMouse<CR>
+" 如果定义F5为快捷键，则lookupfile不可用, vim-color-solaried热键冲突
+nnoremap <F5> :ToggleMouse<CR>
+
+" paste
+" ---------------------------------------------------
+let s:paste_enable = 0
+function! s:TogPaste()
+    if s:paste_enable == 0
+        let s:paste_enable = 1
+        exe "set paste"
+        echohl ModeMsg
+        echo "Paste is Enabled."
+        echohl Normal
+    else
+        let s:paste_enable = 0
+        exe "set nopaste"
+        echohl ModeMsg
+        echo "Paste is DISABLE."
+        echohl Normal
+    endif
+endfunction
+command TogglePaste :call s:TogPaste()
+nnoremap <unique> <leader><leader>p :TogglePaste<CR>
+nnoremap <unique> <F9> :TogglePaste<CR>
+
+" escalt.vim{
+" ---------------------------------------------------
+" Alt键映射：
+" 先set变量 <M-Q> 为^]q 的转义序列，
+" 然后映射该序列为某个命令
+" 举例
+" set <M-A>=a
+" nn <M-A> ggvG "相当于 :nn a ggVG
+
+" shift 组合键，F1~F4需要映射，F5~F12不需要映射
+
+" 修复alt键的映射
+" fix meta-keys which generate <Esc>a .. <Esc>z
+" repeat each Meta-key.
+if LINUX()
+    " ttimeoutlen值会影响esc后按下字母键的操作，设置超时时间为1ms
+    set timeoutlen=1000
+    set ttimeout
+    set ttimeoutlen=1
+
+    let c='a'
+    while c <= 'z'
+        exec "set <M-".toupper(c).">=".c
+        " exec "nn ".c." <M-".toupper(c).">"
+        " exec "inoremap ".c." <M-".toupper(c).">"
+        let c = nr2char(1+char2nr(c))
+    endw
+    let s:systerm = system("uname -a")
+    if s:systerm=~'Ubuntu'
+        " set <S-F1>=O1;2P
+        " set <S-F2>=O1;2Q
+        " set <S-F3>=O1;2R
+        " set <S-F4>=O1;2S
+    " else
+        set <S-F1>=[1;2P
+        set <S-F2>=[1;2Q
+        set <S-F3>=[1;2R
+        set <S-F4>=[1;2S
+    endif
+endif
+" }escalt
+" ---------------------------------------------------
+
+" ex-project
+nnoremap <unique> <silent> <F3> :EXProjectToggle<CR>
+
+" DEBUG
+" :set verbose=13
+" :set verbosefile='"~/verbose.log"'
+" NERDTree has bug on vim 8.0, open 1 file at least.
+" if v:version >= 800
+    " autocmd vimenter * :e $VIMRUNTIME/README.txt
+" endif
+" :redir! > $HOME/vim.log
+
+" vim:ts=4:sw=4:sts=4 et fdm=marker:
