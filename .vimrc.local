@@ -425,6 +425,7 @@ endif
 " ---------------------------------------------------
 nnoremap <unique> <leader>ll :LeaderfLine<CR>
 nnoremap <unique> <leader>sf :vimgrep  %<left><left>
+nnoremap <unique> <leader>co :copen<CR>
 " } LeaderF
 
 " BufExplorer{
