@@ -716,7 +716,7 @@ nnoremap <unique> <leader>vr :%s/\v/g<left><left>
 " 切换工作目录为当前文件路径
 nnoremap <unique> <silent> <leader>. :cd %:p:h<CR>
 " TAB切换窗口
-nnoremap <unique> <TAB> <C-W><C-W>
+" nnoremap <unique> <TAB> <C-W><C-W>
 " 不能设置autochdir，不然每次打开文件都会修改cwd
 " set autochdir
 
