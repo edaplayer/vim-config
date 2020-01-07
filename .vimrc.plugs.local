@@ -48,6 +48,9 @@ Plug 'Yggdroot/vim-mark'
 " Plug 'sickill/vim-monokai'
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'crusoexia/vim-monokai'
+Plug 'othree/xml.vim'
+" Plug 'sukima/xmledit/'
+" Plug 'tpope/vim-ragtag'
 
 let s:enable_exvim_plugin=1
 if s:enable_exvim_plugin

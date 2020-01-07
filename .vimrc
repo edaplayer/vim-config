@@ -75,6 +75,7 @@ scriptencoding utf-8
 " Modify mapleader to ','
 " NOTE: this is must before load plugins.
 let mapleader = ","
+autocmd FileType xml let maplocalleader = ","
 nnoremap \ ,
 
 "/////////////////////////////////////////////////////////////////////////////
