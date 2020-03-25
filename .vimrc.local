@@ -109,18 +109,20 @@ set wildmode=longest:full,list:full    " 命令行补全模式，最长字串优
 set ruler      " 显示标尺
 set autoindent " 自动缩进
 set cindent    " c缩进
-" Tab键的宽度
+" Tab {
 set tabstop=4
-" 统一缩进为4
 set softtabstop=4
 set shiftwidth=4
+" 在行和段开始处使用制表符
+" set smarttab
+set noexpandtab
+if has("autocmd")
+    autocmd FileType python set expandtab
+endif
+" }
 set wrap
 let &showbreak='➣➣ '
 set ignorecase smartcase
-" 不用空格代替制表符
-set noexpandtab
-" 在行和段开始处使用制表符
-" set smarttab
 " 历史记录数
 set history=1000
 " 搜索逐字符高亮
@@ -134,7 +136,8 @@ set laststatus=2
 " 2:总显示最后一个窗口的状态行；设为1则窗口数多于一个的时候显示最后一个窗口的状态行；0不显示状态行
 " 禁用windows下的菜单快捷键alt
 set winaltkeys=no
-"statusline
+
+" statusline {
 set statusline=%0*[%n]                                  "buffernr
 set statusline+=%0*\ %<%F\                              "文件路径
 set statusline+=%0*\ %y\                                "文件类型
@@ -144,8 +147,9 @@ set statusline+=%0*\ %{&ff}\                            "文件系统(dos/unix..
 set statusline+=%0*\ %=Ln:%l/%L(%p%%)\                  "光标所在行号/总行数 (百分比)
 set statusline+=%0*\ Col:%c\                            "光标所在列
 set statusline+=%0*\ %m%r%w\%P\                         "Modified? Read only? Top/bottom
-
 " :set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+" }
+
 " powerline{
 " ---------------------------------------------------
 " powerline 必须设置256色
