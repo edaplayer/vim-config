@@ -118,7 +118,7 @@ set wrap
 let &showbreak='➣➣ '
 set ignorecase smartcase
 " 不用空格代替制表符
-" set noexpandtab
+set noexpandtab
 " 在行和段开始处使用制表符
 " set smarttab
 " 历史记录数
