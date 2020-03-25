@@ -92,6 +92,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+let g:ex_tools_path = '~/.vim/tools/'
 call plug#begin('~/.vim/plugged')
 let vimrc_plugs_path = '~/.vimrc.plugs'
 let vimrc_plugs_local_path = '~/.vimrc.plugs.local'
