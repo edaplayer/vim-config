@@ -665,7 +665,7 @@ let g:session_autosave = 'no'
 
 " DoxygenToolkit{
 " ---------------------------------------------------
-map fg :Dox<cr>
+map <leader>d :Dox<cr>
 let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
 let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
 let g:DoxygenToolkit_authorName="Tang"
