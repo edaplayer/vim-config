@@ -758,7 +758,7 @@ endfunction
 command ToggleMouse :call s:TogMouse()
 nnoremap <unique> <leader><leader>m :ToggleMouse<CR>
 " 如果定义F5为快捷键，则lookupfile不可用, vim-color-solaried热键冲突
-nnoremap <F5> :ToggleMouse<CR>
+" nnoremap <F5> :ToggleMouse<CR>
 
 " paste
 " ---------------------------------------------------
