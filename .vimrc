@@ -427,7 +427,8 @@ endif
 " NOTE: F10 looks like have some feature, when map with F10, the map will take no effects
 
 " Don't use Ex mode, use Q for formatting
-map Q gq
+" map Q gq
+map Q <ESC>:q<CR>
 
 " define the copy/paste judged by clipboard
 if &clipboard ==# 'unnamed'
