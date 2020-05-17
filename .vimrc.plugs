@@ -42,6 +42,7 @@ Plug 'exvim/ex-vimentry'
 " ex-project
 " ---------------------------------------------------
 Plug 'exvim/ex-project'
+nnoremap <unique> <silent> <F3> :EXProjectToggle<CR>
 
 " ex-gsearch
 " ---------------------------------------------------
@@ -492,6 +493,7 @@ Plug 'exvim/ex-indenthtml.vim'
 
 " DISABLE: Slow to open big css file
 " vim-css-color
+" ---------------------------------------------------
 " ---------------------------------------------------
 " Plug 'skammer/vim-css-color'
 

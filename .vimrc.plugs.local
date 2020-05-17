@@ -55,8 +55,8 @@ Plug 'othree/xml.vim'
 " Plug 'tpope/vim-ragtag'
 Plug 'mhinz/vim-startify'
 
-let s:enable_exvim_plugin=1
-if s:enable_exvim_plugin
+let g:enable_exvim_plugin=0
+if g:enable_exvim_plugin
 " from exvim
 " Plug 'gmarik/Vundle.vim'
 Plug 'exvim/ex-config'
@@ -81,6 +81,8 @@ Plug 'exvim/ex-colorschemes'
 Plug 'exvim/ex-cref'
 Plug 'exvim/ex-typescript'
 Plug 'exvim/ex-indenthtml.vim'
+endif
+
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -103,6 +105,3 @@ Plug 'digitaltoad/vim-jade'
 Plug 'groenewege/vim-less'
 Plug 'wavded/vim-stylus'
 Plug 'plasticboy/vim-markdown'
-else
-    finish
-endif

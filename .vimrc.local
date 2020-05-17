@@ -837,9 +837,6 @@ endif
 " }escalt
 " ---------------------------------------------------
 
-" ex-project
-nnoremap <unique> <silent> <F3> :EXProjectToggle<CR>
-
 " DEBUG
 " :set verbose=13
 " :set verbosefile='"~/verbose.log"'
