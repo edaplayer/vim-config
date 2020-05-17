@@ -246,6 +246,8 @@ let g:UltiSnipsUsePythonVersion = 3
 
 " neocomplete: invoke when you insert words
 " ---------------------------------------------------
+" if exists("g:loaded_neocomplete")
+if 1
 " Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -285,8 +287,8 @@ endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
@@ -317,6 +319,7 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+endif
 " }neocomplete
 " ---------------------------------------------------
 
@@ -480,8 +483,8 @@ let g:bufExplorerVersionWarn=1
 " <leader>bd is mapped EXbd by exvim
 nnoremap <unique> <silent> <F6>         :bp<CR>
 nnoremap <unique> <silent> <F7>         :bn<CR>
-nnoremap <unique> <silent> <F10>       :tabnew<CR>
-nnoremap <unique> <silent> <S-F10>       :tabclose<CR>
+nnoremap <unique> <silent> <F10>        :tabnew<CR>
+nnoremap <unique> <silent> <S-F10>      :tabclose<CR>
 nnoremap <unique> <silent> <leader>bn   :bn<CR>
 nnoremap <unique> <silent> <leader>bp   :bp<CR>
 nnoremap <unique> <silent> <leader>tn   :tabn<CR>
