@@ -723,6 +723,8 @@ vnoremap <unique> <leader>h :<C-U>Hexmode<CR>
 
 " 快捷键
 " ---------------------------------------------------
+" 快速保存
+nnoremap <unique> <leader>w :w<CR>
 " 快速退出
 " 与ex-utility冲突
 " nnoremap <leader><ESC> :qa<CR>
