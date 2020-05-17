@@ -349,7 +349,8 @@ let NERDTreeShowBookmarks=1
 let NERDTreeShowHidden=1
 " autocmd vimenter * :NERDTree Y:\
 " 设置打开vim的时候默认打开nerdtree
-" let g:nerdtree_tabs_open_on_console_startup = 1
+let g:nerdtree_tabs_open_on_gui_startup = 2
+let g:nerdtree_tabs_open_on_console_startup = 0
 " autocmd StdinReadPre * let s:std_in=1
 " 无参数运行vim时运行NERDTree
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
