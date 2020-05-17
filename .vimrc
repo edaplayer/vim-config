@@ -114,8 +114,6 @@ syntax on " required
 
 if has('gui_running')
     set background=dark
-    let g:solarized_contrast='high'
-    let g:solarized_visibility='high'
 else
     set background=dark
     set t_Co=256 " make sure our terminal use 256 color
