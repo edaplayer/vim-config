@@ -56,7 +56,10 @@ Plug 'othree/xml.vim'
 Plug 'mhinz/vim-startify'
 
 let g:enable_exvim_plugin=0
-if g:enable_exvim_plugin
+
+if g:enable_exvim_plugin == 0
+Plug 'kshenoy/vim-signature'
+else
 " from exvim
 " Plug 'gmarik/Vundle.vim'
 Plug 'exvim/ex-config'
