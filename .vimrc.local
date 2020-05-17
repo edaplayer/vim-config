@@ -1,17 +1,22 @@
 " This file will be loaded at the end of .vimrc.
 " This file is designed to add your own vim scripts or override the exVim's .vimrc settings.
 
+" lua版本信息，ex-config\after\syntax\lua.vim需要读取以下变量，vim8.0缺少以下变量
+let lua_version = 5
+let lua_subversion = 3
+
 "/////////////////////////////////////////////////////////////////////////////
 " Default colorscheme setup
 "/////////////////////////////////////////////////////////////////////////////
 
+" solarized {
 set background=dark
 if has('gui_running')
     let g:solarized_contrast='high'
     let g:solarized_visibility='high'
 else
     set t_Co=256 " make sure our terminal use 256 color
-    " let g:solarized_termcolors = 256
+    let g:solarized_termcolors = 256
 endif
 " colorscheme solarized
 " colorscheme exlightgray
@@ -23,60 +28,69 @@ if g:colors_name=='solarized'
         hi CursorLineNr term=bold ctermfg=190 gui=bold guifg=Yellow
     endif
 endif
-" solarized{
 " ---------------------------------------------------
 call togglebg#map("<C-F5>")
 " }
 
-" lua版本信息，ex-config\after\syntax\lua.vim需要读取以下变量，vim8.0缺少以下变量
-let lua_version = 5
-let lua_subversion = 3
+" redhat{
+if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+    set fileencodings=ucs-bom,utf-8,chinese,latin1
+endif
 
-" if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-    " set fileencodings=ucs-bom,utf-8,chinese,latin1
-" endif
 set fileencodings=utf-8,chinese,latin1
 set encoding=utf-8
 set termencoding=utf-8
 
-" redhat{
 set nocompatible	" Use Vim defaults (much better!)
-set backspace=indent,eol,start		" allow backspacing over everything in insert mode
-" set ai			" always set autoindenting on
-" set backup		" keep a backup file
-set viminfo='20,\"50	" read/write a .viminfo file, don't store more
+set backspace=indent,eol,start        " allow backspacing over everything in insert mode
+" set ai            " always set autoindenting on
+" set backup        " keep a backup file
+set viminfo='20,\"50    " read/write a .viminfo file, don't store more
 " than 50 lines of registers
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
+set history=50      " keep 50 lines of command line history
+set ruler           " show the cursor position all the time
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
-    augroup redhat
-        " autocmd!
-        " In text files, always limit the width of text to 78 characters
-        " 设置txt文件的屏幕宽度为78个字符
-        autocmd BufRead *.txt set tw=78
-        " When editing a file, always jump to the last cursor position
-        " 编辑文件时，总是跳到上一次光标位置
-        " autocmd BufReadPost *
-                    " \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-                    " \   exe "normal! g`\"" |
-                    " \ endif
-        " don't write swapfile on most commonly used directories for NFS mounts or USB sticks
-        " 对于NFS文件系统或USB存储设备，不要写入swap文件
-        autocmd BufNewFile,BufReadPre /media/*,/run/media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
-        " start with spec file template
-        " 使用template.spec启动
-        " autocmd BufNewFile *.spec 0r /usr/share/vim/vimfiles/template.spec
-    augroup END
+  augroup redhat
+  autocmd!
+  " In text files, always limit the width of text to 78 characters
+  autocmd BufRead *.txt set tw=78
+  " When editing a file, always jump to the last cursor position
+  " autocmd BufReadPost *
+    " \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+    " \   exe "normal! g`\"" |
+    " \ endif
+  " don't write swapfile on most commonly used directories for NFS mounts or USB sticks
+  autocmd BufNewFile,BufReadPre /media/*,/run/media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
+  " start with spec file template
+  autocmd BufNewFile *.spec 0r /usr/share/vim/vimfiles/template.spec
+  augroup END
+endif
+
+if has("cscope") && filereadable("/usr/bin/cscope")
+   set csprg=/usr/bin/cscope
+   set csto=0
+   set cst
+   set nocsverb
+   " add any database in current directory
+   if filereadable("cscope.out")
+      cs add cscope.out
+   " else add database pointed to by environment
+   elseif $CSCOPE_DB != ""
+      cs add $CSCOPE_DB
+   endif
+   set csverb
 endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
-" if &t_Co > 2 || has("gui_running")
-    " syntax on
-    " set hlsearch
-" endif
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+endif
+
+filetype plugin on
 
 " 设定xterm颜色，最好用默认的,用set_xterm屏蔽掉
 " if &term=="xterm" && has ("set_xterm")
@@ -90,13 +104,11 @@ endif
 let &guicursor = &guicursor . ",a:blinkon"
 " }redhat
 
-set number
-set nocompatible
 " 关闭提示音
 " set noeb
 autocmd GuiEnter * set vb t_vb=
-set cul "高亮光标所在行
-set cuc "高亮光标所在列
+set cul " 高亮光标所在行
+set cuc " 高亮光标所在列
 " hi CursorColumn term=reverse cterm=reverse ctermbg=Black ctermfg=LightGrey
 " set nocuc 如果列高亮在securecrt不正常，要设置securecrt的apperance高亮方式为bold方式，最终发现设置xterm就好了"
 " hi CursorLine term=reverse cterm=reverse ctermbg=Black ctermfg=LightGrey
