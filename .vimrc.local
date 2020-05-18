@@ -9,7 +9,7 @@ let lua_subversion = 3
 " Default colorscheme setup
 "/////////////////////////////////////////////////////////////////////////////
 
-" solarized {
+" colorscheme {
 set background=dark
 if has('gui_running')
     let g:solarized_contrast='high'
@@ -22,7 +22,10 @@ endif
 " colorscheme exlightgray
 " colorscheme gruvbox
 " colorscheme monokai
-colorscheme sublimemonokai
+" colorscheme sublimemonokai
+" colorscheme monokain
+set termguicolors
+colorscheme monokai_pro
 if g:colors_name=='solarized'
     if &background=='dark'
         hi CursorLineNr term=bold ctermfg=190 gui=bold guifg=Yellow

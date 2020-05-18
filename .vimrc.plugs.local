@@ -49,11 +49,15 @@ Plug 'inkarkat/vim-mark'
 " Plug 'tomasr/molokai'
 " Plug 'sickill/vim-monokai'
 Plug 'ErichDonGubler/vim-sublime-monokai'
-Plug 'crusoexia/vim-monokai'
+" Plug 'crusoexia/vim-monokai'
+Plug 'phanviet/vim-monokai-pro'
+" Plug 'flazz/vim-colorschemes'
+Plug 'lsdr/monokai'
 Plug 'othree/xml.vim'
 " Plug 'sukima/xmledit/'
 " Plug 'tpope/vim-ragtag'
 Plug 'mhinz/vim-startify'
+" Plug 'vim/killersheep'
 
 let g:enable_exvim_plugin=0
 
