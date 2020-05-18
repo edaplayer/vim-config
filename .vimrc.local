@@ -728,10 +728,12 @@ nnoremap <unique> <leader>w :w<CR>
 " 快速退出
 " 与ex-utility冲突
 " nnoremap <leader><ESC> :qa<CR>
-" 设定q为快速退出键
-" nnoremap <unique> q <ESC>:q<CR>
-" nnoremap <unique> q <ESC><ESC>:q<CR>
-nnoremap <unique> <leader>q <ESC>:qa!<CR>
+" 设定Q为快速退出键
+map <unique> Q <ESC>:q<CR>
+" 关闭buffer
+nnoremap <unique> <leader>q <ESC>:bd<CR>
+" 强制退出vim
+nnoremap <unique> <leader>Q <ESC>:qa!<CR>
 " 快速正则，查找替换，与 ex-searchcompl冲突
 nnoremap / /\v
 nnoremap <unique> <leader>vr :%s/\v/g<left><left>

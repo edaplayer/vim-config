@@ -426,7 +426,6 @@ endif
 
 " Don't use Ex mode, use Q for formatting
 " map Q gq
-map Q <ESC>:q<CR>
 
 " define the copy/paste judged by clipboard
 if &clipboard ==# 'unnamed'
