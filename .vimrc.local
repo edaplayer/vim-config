@@ -483,12 +483,14 @@ let g:bufExplorerVersionWarn=1
 " <leader>bd is mapped EXbd by exvim
 nnoremap <unique> <silent> <F6>         :bp<CR>
 nnoremap <unique> <silent> <F7>         :bn<CR>
+nnoremap <unique> <silent> <leader>bp   :bp<CR>
+nnoremap <unique> <silent> <leader>bn   :bn<CR>
 nnoremap <unique> <silent> <F10>        :tabnew<CR>
 nnoremap <unique> <silent> <S-F10>      :tabclose<CR>
-nnoremap <unique> <silent> <leader>bn   :bn<CR>
-nnoremap <unique> <silent> <leader>bp   :bp<CR>
-nnoremap <unique> <silent> <leader>tn   :tabn<CR>
+nnoremap <unique> <silent> <leader>te   :tabedit<CR>
+nnoremap <unique> <silent> <leader>tc   :tabclose<CR>
 nnoremap <unique> <silent> <leader>tp   :tabp<CR>
+nnoremap <unique> <silent> <leader>tn   :tabn<CR>
 " tabnew相当于tabe tabedit"
 
 " DISABLE
