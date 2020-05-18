@@ -27,9 +27,10 @@ if g:colors_name=='solarized'
     if &background=='dark'
         hi CursorLineNr term=bold ctermfg=190 gui=bold guifg=Yellow
     endif
+    call togglebg#map("<C-F5>")
+    unmap <F5>
 endif
 " ---------------------------------------------------
-call togglebg#map("<C-F5>")
 " }
 
 " redhat{
