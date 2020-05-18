@@ -752,6 +752,12 @@ nnoremap <silent> <C-L> <C-W>l
 " nnoremap <silent> k kzz
 " nnoremap <silent> <C-F> <C-F>M
 " nnoremap <silent> <C-B> <C-B>M
+" 分割
+nnoremap <unique> <leader>sh :set nosplitright<CR>:vsplit<CR>
+nnoremap <unique> <leader>sl :set nosplitright<CR>:vsplit<CR>
+nnoremap <unique> <leader>sk :set nosplitbelow<CR>:split<CR>
+nnoremap <unique> <leader>sj :set splitbelow<CR>:split<CR>
+
 " }windows
 
 " 切换鼠标模式
