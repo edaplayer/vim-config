@@ -475,6 +475,25 @@ CTRL-R CTRL-L				*c_CTRL-R_CTRL-L* *c_<C-R>_<C-L>*
 			CTRL-A	光标下的字串；参见: |WORD|
 			CTRL-L	光标下的文本行
 ------------------------------------------------------------------------------
+Replace pattern with 1, 2, 3, ... on each line
+http://www.vimgolf.com/challenges/5ec18a61827ca60009087755
+
+Start file
+I can't see the $ for all the $,
+But there $ not $ $ tomorrow.
+$ she can do $ and 4,
+$ the $ in the $ and $ the $.
+
+End file
+I can't see the 1 for all the 2,
+But there 1 not 2 3 tomorrow.
+1 she can do 2 and 4,
+1 the 2 in the 3 and 4 the 5.
+
+solution:
+5O:%s/\$/0<Esc>VHg<C-A>5D@"ZZ
+r0"ay u:let@a=@a+1|%s'\$'\=@a<CR>4@:ZZ       保存0到寄存器a，通过命令行a++，然后替换$为a，最后重复4次
+------------------------------------------------------------------------------
 特殊编辑：
 ------------------------------------------------------------------------------
 ga 查看十六进制
@@ -483,4 +502,8 @@ Ascii:
 <C-v>{code}
 Unicode:
 <C-v>u{code}
+
+交换两个单词：
+nnoremap <silent> <leader>sw :s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<cr><c-o>
+_是黑洞寄存器，"_yiw无意义，可删掉，\%#是匹配当前光标位置
 ------------------------------------------------------------------------------
