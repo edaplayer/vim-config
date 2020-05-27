@@ -24,7 +24,7 @@ endif
 " colorscheme monokai
 " colorscheme sublimemonokai
 " colorscheme monokain
-set termguicolors
+" set termguicolors
 colorscheme monokai_pro
 if g:colors_name=='solarized'
     if &background=='dark'
