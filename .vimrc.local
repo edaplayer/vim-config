@@ -841,13 +841,17 @@ if LINUX()
         " exec "inoremap ".c." <M-".toupper(c).">"
         let c = nr2char(1+char2nr(c))
     endw
-    let s:systerm = system("uname -a")
-    if s:systerm=~'Ubuntu'
-        " set <S-F1>=O1;2P
-        " set <S-F2>=O1;2Q
-        " set <S-F3>=O1;2R
-        " set <S-F4>=O1;2S
-    " else
+    " let s:systerm = system("uname -a")
+    let s:systerm = system("lsb_release -d")
+    if s:systerm =~ 'Ubuntu'
+        let s:code = system("lsb_release -c")
+        if s:code =~ 'trusty'
+            set <S-F1>=O1;2P
+            set <S-F2>=O1;2Q
+            set <S-F3>=O1;2R
+            set <S-F4>=O1;2S
+        endif
+    elseif s:systerm =~ 'CentOS'
         set <S-F1>=[1;2P
         set <S-F2>=[1;2Q
         set <S-F3>=[1;2R
