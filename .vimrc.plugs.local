@@ -49,20 +49,29 @@ Plug 'godlygeek/csapprox'
 " Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-mark'
+
+" colorscheme
 " Plug 'icymind/NeoSolarized'
 " Plug 'tomasr/molokai'
 " Plug 'sickill/vim-monokai'
-Plug 'ErichDonGubler/vim-sublime-monokai'
+" Plug 'ErichDonGubler/vim-sublime-monokai'
+Plug 'edaplayer/vim-sublime-monokai'
 " Plug 'crusoexia/vim-monokai'
-Plug 'phanviet/vim-monokai-pro'
+" Plug 'phanviet/vim-monokai-pro'
 " Plug 'flazz/vim-colorschemes'
 Plug 'lsdr/monokai'
+
+" xml
 Plug 'othree/xml.vim'
 " Plug 'sukima/xmledit/'
+
 " Plug 'tpope/vim-ragtag'
 Plug 'mhinz/vim-startify'
+
+" other
 " Plug 'vim/killersheep'
 
+" exvim
 let g:enable_exvim_plugin=0
 
 if g:enable_exvim_plugin == 0

@@ -22,10 +22,10 @@ endif
 " colorscheme exlightgray
 " colorscheme gruvbox
 " colorscheme monokai
-" colorscheme sublimemonokai
+colorscheme sublimemonokai
 " colorscheme monokain
 " set termguicolors
-colorscheme monokai_pro
+" colorscheme monokai_pro
 if g:colors_name=='solarized'
     if &background=='dark'
         hi CursorLineNr term=bold ctermfg=190 gui=bold guifg=Yellow
