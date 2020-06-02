@@ -752,10 +752,10 @@ nnoremap <unique> <silent> <leader>. :cd %:p:h<CR>
 
 " vim windows{
 " 与exvim.vimrc 565行冲突，与vimrc.plugin ex-utility快捷键冲突，不能用unique属性
-nnoremap <silent> <C-J> <C-W>j
-nnoremap <silent> <C-K> <C-W>k
-nnoremap <silent> <C-H> <C-W>h
-nnoremap <silent> <C-L> <C-W>l
+nnoremap <silent> <C-J> <C-W><down>
+nnoremap <silent> <C-K> <C-W><up>
+nnoremap <silent> <C-H> <C-W><left>
+nnoremap <silent> <C-L> <C-W><right>
 " nnoremap <silent> j jzz
 " nnoremap <silent> k kzz
 " nnoremap <silent> <C-F> <C-F>M
