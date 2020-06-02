@@ -830,9 +830,9 @@ nnoremap <unique> <F9> :TogglePaste<CR>
 " repeat each Meta-key.
 if LINUX()
     " ttimeoutlen值会影响esc后按下字母键的操作，设置超时时间为1ms
-    set timeoutlen=1000
-    set ttimeout
-    set ttimeoutlen=1
+    set timeoutlen=1000 " Default 1000
+    set ttimeout        " Default nottimeout, but if open timeout, ignore ttm
+    set ttimeoutlen=100 " Default -1
 
     let c='a'
     while c <= 'z'
