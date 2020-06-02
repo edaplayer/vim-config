@@ -404,23 +404,7 @@ redir! > lookuplog.log
 
 注意
 需要关闭vim后，log文件才会更新
-
-reference手册7.2  文件列表：
-我 在 哪？
-要知道当前文件在文件列表中的位置，可以 注意 一下文件的标题。那里应该显示类似
-"(2 of 3)" 的字样。这表示你正在编辑三个文件中的第二个。
-如果你要查看整个文件列表，使用如下命令:
-:args
-这是 "arguments" (参数) 的缩写。其输出应该象下面这样:
-
-处理 C:\Users\Administrator\.vim\bundle\cscope_macros.vim\plugin\
-cscope_macros.vim 时发生错误:
-
-第   42 行:
-
-E609: Cscope 错误: cscope: Could not create private temp dir
-C:\Users\ADMINI~1\AppData\Local\Temp/cscope.5060
-
+------------------------------------------------------------------------------
 减少按键的方法
 )      跳到下一句，以句号为标记
 <C-O>
@@ -428,75 +412,6 @@ gJ     连接下一行，去除空白
 [N]:   对N行内容进行操作，命令行会显示： :.,.+5wq!
 @.     执行寄存器.中的命令
 可视模式下"= 表达式寄存器
-------------------------------------------------------------------------------
-vimgolf
-------------------------------------------------------------------------------
-One number per line
-http://vimgolf.com/challenges/56fb2e75ccffcc0009026473
-
-解法：
-djJJIwr<CR><Esc>u9@.<End>xZZ      先插入wr<CR>操作，利用@.执行插入的文本命令，实际效果就是替换逗号为回车符，参考:h registers
-5gJV"=[<C-R><C-A>]<CR>pZZ         合并为一行，选中整行内容，利用"=[]填写一个列表，列表内容即为光标下的字串（-号会被自动忽略），
-                                  再用p粘贴覆盖，如果表达式寄存器内容为列表，每个成员被按行分割，详情可看:h "=
-dj3gJV"=[<C-R><C-A>]<CR>pZZ
-
-技巧：
-将当前行替换成某个数字+回车符
-
-手册732页
-’=’ 表达式寄存器: 会提示你输入一个表达式。
-(见 |expression|)
-(在表达式提示中无效；不允许改变缓冲区或者当前
-窗口这样的操作，以避免副作用)
-如果结果为 |List| 列表，其中的每一项当作一行。
-当然其中内容也可包含换行符。
-如果结果为浮点数，自动转换为字符串。
-
-660页
-6. 表达式寄存器 "= *quote_=* *quote=* *@=*
-表达式的计算结果必须是一个字符串。数值结果会自动转化为字符串。对 "p" 和 ":put"
-命令而言，浮点数结果也会被转化为字符串。如果结果为列表，每个成员被转成字符串，
-然后被单独放在一行上。字典、函数引用类型的结果则产生错误信息 (通过 string() 转
-化)。
-如果 "= 寄存器被 "p" 命令使用，该字符串会在 <NL> 字符处断开。如果该字符串以
-<NL> 结尾，则它被视为一个面向行的寄存器。{Vi 无此功能}
-
-参:h c_CTRL-R_=
-CTRL-R CTRL-F				*c_CTRL-R_CTRL-F* *c_<C-R>_<C-F>*
-CTRL-R CTRL-P				*c_CTRL-R_CTRL-P* *c_<C-R>_<C-P>*
-CTRL-R CTRL-W				*c_CTRL-R_CTRL-W* *c_<C-R>_<C-W>*
-CTRL-R CTRL-A				*c_CTRL-R_CTRL-A* *c_<C-R>_<C-A>*
-CTRL-R CTRL-L				*c_CTRL-R_CTRL-L* *c_<C-R>_<C-L>*
-		插入光标下的对象:
-			CTRL-F	光标下的文件名
-			CTRL-P	用 'path' 扩展的光标下的文件名。与 |gf|
-				中的类似。
-			CTRL-W	光标下的单词
-			CTRL-A	光标下的字串；参见: |WORD|
-			CTRL-L	光标下的文本行
-------------------------------------------------------------------------------
-Replace pattern with 1, 2, 3, ... on each line
-http://www.vimgolf.com/challenges/5ec18a61827ca60009087755
-
-Start file
-I can't see the $ for all the $,
-But there $ not $ $ tomorrow.
-$ she can do $ and 4,
-$ the $ in the $ and $ the $.
-
-End file
-I can't see the 1 for all the 2,
-But there 1 not 2 3 tomorrow.
-1 she can do 2 and 4,
-1 the 2 in the 3 and 4 the 5.
-
-solution:
-5O:%s/\$/0<Esc>VHg<C-A>5D@"ZZ
-r0"ay u:let@a=@a+1|%s'\$'\=@a<CR>4@:ZZ       保存0到寄存器a，通过命令行a++，然后替换$为a，最后重复4次
-------------------------------------------------------------------------------
-Simple text editing with Vim
-qq3jYjVpq2@qZZ     下移3个单位复制后覆盖下一行，重复2次
-:g/V/t.|+d<CR>ZZ   找到V开头的文字，复制并粘贴改行（光标会移动到新行），然后删除错误的下一行
 ------------------------------------------------------------------------------
 特殊编辑：
 ------------------------------------------------------------------------------
