@@ -763,7 +763,7 @@ nnoremap <silent> <C-L> <C-W><right>
 " nnoremap <silent> <C-B> <C-B>M
 " 分割
 nnoremap <unique> <leader>sh :set nosplitright<CR>:vsplit<CR>
-nnoremap <unique> <leader>sl :set nosplitright<CR>:vsplit<CR>
+nnoremap <unique> <leader>sl :set splitright<CR>:vsplit<CR>
 nnoremap <unique> <leader>sk :set nosplitbelow<CR>:split<CR>
 nnoremap <unique> <leader>sj :set splitbelow<CR>:split<CR>
 
@@ -773,22 +773,20 @@ nnoremap <unique> <leader>sj :set splitbelow<CR>:split<CR>
 " ---------------------------------------------------
 set mouse=a
 let s:mouse_enable = 1
-function! s:TogMouse()
+function! s:ToggleMouse()
+    echohl ModeMsg
     if s:mouse_enable == 0
         let s:mouse_enable = 1
         exe "set mouse=" . "a"
-        echohl ModeMsg
         echo "Mouse is Enabled."
-        echohl Normal
     else
         let s:mouse_enable = 0
         exe "set mouse="
-        echohl ModeMsg
         echo "Mouse is DISABLE."
-        echohl Normal
     endif
+    echohl Normal
 endfunction
-command ToggleMouse :call s:TogMouse()
+command ToggleMouse :call s:ToggleMouse()
 nnoremap <unique> <leader><leader>m :ToggleMouse<CR>
 " 如果定义F5为快捷键，则lookupfile不可用, vim-color-solaried热键冲突
 " nnoremap <F5> :ToggleMouse<CR>
@@ -796,22 +794,20 @@ nnoremap <unique> <leader><leader>m :ToggleMouse<CR>
 " paste
 " ---------------------------------------------------
 let s:paste_enable = 0
-function! s:TogPaste()
+function! s:TogglePaste()
+    echohl ModeMsg
     if s:paste_enable == 0
         let s:paste_enable = 1
         exe "set paste"
-        echohl ModeMsg
         echo "Paste is Enabled."
-        echohl Normal
     else
         let s:paste_enable = 0
         exe "set nopaste"
-        echohl ModeMsg
         echo "Paste is DISABLE."
-        echohl Normal
     endif
+    echohl Normal
 endfunction
-command TogglePaste :call s:TogPaste()
+command TogglePaste :call s:TogglePaste()
 nnoremap <unique> <leader><leader>p :TogglePaste<CR>
 nnoremap <unique> <F9> :TogglePaste<CR>
 
