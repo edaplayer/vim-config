@@ -68,3 +68,47 @@ Simple text editing with Vim
 qq3jYjVpq2@qZZ     下移3个单位复制后覆盖下一行，重复2次
 :g/V/t.|+d<CR>ZZ   找到V开头的文字，复制并粘贴改行（光标会移动到新行），然后删除错误的下一行
 ------------------------------------------------------------------------------
+Simple, Practical, and Common
+http://www.vimgolf.com/challenges/55b18bbea9c2c30d04000001
+
+solution:
+#Yp<C-A>l11.GONew t<C-N><C-N>.<CR><Esc>ZZ
+技巧<C-A>加一
+点号可以重复<C-A>
+善用<C-N>补全
+------------------------------------------------------------------------------
+I forgot quotes
+
+Start file
+foo = a
+      ab
+      abc
+
+End file
+foo = "a"
+      "ab"
+      "abc"
+
+solution:
+<C-V>GhA"<Esc>$.ZZ 
+<C-V>? <CR>A"<Esc>$.ZZ
+------------------------------------------------------------------------------
+Box it
+Create a box around a line.
+
+Start file
+My dream is to be in a box
+
+End file
+###############################
+# My dream was to be in a box #
+###############################
+
+fiswa<Home># <End> #<Esc>YPVjr#pZZ
+技巧：
+如何用两行#号包裹一行内容：
+YPVjr#p     先复制用P粘贴Vj全选r#替换为两行#号，
+            此时"寄存器存储的是刚刚被替换的字符，
+            按p即可粘贴到中间行
+------------------------------------------------------------------------------
+" vim:tw=80:ts=4:sw=4:sts=4 et
