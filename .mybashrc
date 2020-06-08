@@ -1,0 +1,40 @@
+# custom aliases
+alias rg='rg --no-heading'
+alias rgf='rg --no-heading --files -g'
+alias gg='git log -i --grep'
+alias gw='git whatchanged'
+alias gshow='git show'
+alias glog='git log'
+alias ga='git add '
+alias gb='git branch'
+alias gba='git branch -a'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gdn='git diff --name-only'
+alias gcl='git clone '
+alias gco='git checkout '
+alias gcm='git commit -m '
+alias gst='git status'
+alias gpush='git push -u origin '
+alias gpull='git pull -r origin '
+alias grv='git remote -v'
+
+black=`  echo -en "\033[01;30m"`
+red=`    echo -en "\033[01;31m"`
+green=`  echo -en "\033[01;32m"`
+yellow=` echo -en "\033[01;33m"`
+blue=`   echo -en "\033[01;34m"`
+magenta=`echo -en "\033[01;35m"`
+cyan=`   echo -en "\033[01;36m"`
+white=`  echo -en "\033[01;37m"`
+normal=` echo -en "\033[00m"`
+git-branch () {
+    GIT_BRANCH=`git branch 2>/dev/null | awk '$1 == "*"{branch=($4==""?$2:$2" "$4);print branch}'`
+    GIT_BRANCH=${GIT_BRANCH:+"  $GIT_BRANCH"}
+	PS1='${debian_chroot:+($debian_chroot)}\[${green}\]\u@\h\[${normal}\]:\[${blue}\]\w\[${cyan}\]${GIT_BRANCH}\[${normal}\] \$ '
+}
+
+PROMPT_COMMAND="git-branch"
+
+PATH=$HOME/local/bin:$HOME/.local/bin/:$PATH
+export LD_LIBRARY_PATH=$HOME/local/lib:$HOME/.local/lib:$LD_LIBRARY_PATH
