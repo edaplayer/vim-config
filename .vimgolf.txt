@@ -111,4 +111,12 @@ YPVjr#p     先复制用P粘贴Vj全选r#替换为两行#号，
             此时"寄存器存储的是刚刚被替换的字符，
             按p即可粘贴到中间行
 ------------------------------------------------------------------------------
+Two pairs of cluster of letters creates word
+http://www.vimgolf.com/challenges/5c93945c9caf21000ca842f7
+qq2f,a<CR><Esc>q9@q:%s/\W//g<CR>ZZ  重点是替换第二个逗号为回车，再把所有非字母删掉即可
+xqaf'df'f'cf'<CR><Esc>q9@axZZ   删除引号，加回车，重复
+I'gJ',<Esc>V"=[<C-R><C-L>]<CR>pdd8@1ZZ  又是用列表
+qqxda'w2r<CR>q7@qxZZ
+------------------------------------------------------------------------------
+
 " vim:tw=80:ts=4:sw=4:sts=4 et
