@@ -10,5 +10,5 @@ if grep -q -e mybashrc .bashrc ;then
 else
 	echo "Add mybashrc."
 	echo >> .bashrc
-	echo "source .mybashrc" >> .bashrc
+	echo "source ~/.mybashrc" >> .bashrc
 fi
