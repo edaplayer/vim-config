@@ -267,54 +267,55 @@ gd 移动到函数声明就像[[
 ge e的反向操作，移动到上一个单词末尾
 gf 编辑光标所指向的文件
 gg 移动到文件开头
-gh 无
+gh 开始选择模式
 gi 在当前缓冲区最近一次插入模式停止的位置继续插入
 gI 在第一列插入文本
 gj 向下
 gk 上
 gl 无
-gm 无
+gm 和 "g0" 类似，但 (尽可能) 向右移到屏幕显示宽度的中间位置。
 gn 类似n，继续搜索匹配并选中
+gN 类似于 |gn| 但反向搜索，就像 `N` 那样。
 go {n}go，移动到buffer的第n个字节处，默认为文件开头, go = gg
 gp 粘贴，与p区别：粘贴后光标移到末尾/下一行
 gq 格式化直到到移动的位置，与=有差异，具体查看:h gq
 gr 替换虚拟字符，比如制表符
-gs {n}gt等同于:sleep{n} 休眠x秒
+gs {n}gs等同于:sleep{n} 休眠x秒
 gt {n}gt跳转tab
 gu 转换为小写字母直到到移动位置
 gv 返回上一次选中状态
 gw 格式化直到到移动位置，与=有差异，具体查看:h gq
 gx netw-gx
 gy 无
-gz gzip
+gz 无
 
 以下命令均可以通过:h CTRL-* 查询
 <CTRL-A>: +1
-<CTRL-B>: 上翻页
-<CTRL-C>: 中断
-<CTRL-D>: 结束
-<CTRL-E>: 上移屏幕
-<CTRL-F>: 下翻页
+<CTRL-B>: 上翻N页
+<CTRL-C>: 退出插入模式
+<CTRL-D>: 屏幕向下翻滚N行,默认翻滚半屏
+<CTRL-E>: 下滚N行
+<CTRL-F>: 下翻N页
 <CTRL-G>: 打印文件名、路径，总行数
 <CTRL-H>: 向左
-<CTRL-I>: 向前跳转mark（旧的）
-<CTRL-J>:上
-<CTRL-K>:向下
-<CTRL-L>:重画屏幕
-<CTRL-M>:向下
-<CTRL-N>:向下
-<CTRL-O>:向后跳转mark（新的）
-<CTRL-P>:补全
-<CTRL-Q>:如果是WINDOWS系统:替代ctrlv粘贴，unix终端是解锁
-<CTRL-R>:重复
-<CTRL-S>:锁定
-<CTRL-T>:跳转到标签tag，需要ctags支持
-<CTRL-U>:滚动
-<CTRL-V>:列模式，插入模式下插入控制字符
-<CTRL-W>:窗口
-<CTRL-X>:-1
-<CTRL-Y>:滚动
-<CTRL-Z>:后台运行
+<CTRL-I>: 向前跳转mark（新的）
+<CTRL-J>: 下，等同于j
+<CTRL-K>: 无用
+<CTRL-L>: 重画屏幕
+<CTRL-M>: 等同于<CR>，回车功能，跳到下一行行首
+<CTRL-N>: 下，等同于j
+<CTRL-O>: 向后跳转mark（旧的）
+<CTRL-P>: 上，等同于k
+<CTRL-Q>: 如果是WINDOWS系统:替代ctrlv粘贴，unix终端是解锁
+<CTRL-R>: 重复
+<CTRL-S>: 锁定
+<CTRL-T>: 跳转到标签tag，需要ctags支持
+<CTRL-U>: 上滚N行，默认半屏
+<CTRL-V>: 列模式，插入模式下插入控制字符
+<CTRL-W>: 窗口
+<CTRL-X>: -1
+<CTRL-Y>: 上滚N行
+<CTRL-Z>: 挂起vim
 
 
 其他：
