@@ -209,7 +209,7 @@ endif
 " let g:airline_symbols.readonly = ''
 " let g:airline_symbols.linenr = '☰'
 " securecrt不能正常显示太极符号，因此在CRT上要替换成全等号≌
-let g:airline_symbols.linenr = '≡'
+" let g:airline_symbols.linenr = '≡'
 " let g:airline_symbols.maxlinenr = ''
 
 " let g:airline_extensions = ['branch', 'tabline']
