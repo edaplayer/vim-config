@@ -346,6 +346,7 @@ let g:AutoPairsFlyMode=1
 " nerdtree{
 " ---------------------------------------------------
 map <F2> :NERDTreeToggle<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
 let NERDTreeChDirMode = 2
 " 箭头符号：▸ ▾ ◄ ► ▲ ▼ ◀ ▶ powerline和微软雅黑都能识别
 let NERDTreeAutoCenter=0
@@ -447,20 +448,16 @@ endif
 
 " LeaderF {
 " ---------------------------------------------------
+nnoremap <unique> <leader>lb :LeaderfBuffer<CR>
 nnoremap <unique> <leader>ll :LeaderfLine<CR>
+nnoremap <unique> <leader>lm :LeaderfMru<CR>
+nnoremap <unique> <leader>ls :LeaderfSelf<CR>
 nnoremap <unique> <leader>sf :vimgrep  %<left><left>
 nnoremap <unique> <leader>co :copen<CR>
 " } LeaderF
 
 " BufExplorer{
 " ---------------------------------------------------
-" buffer 切换
-" nnoremap <unique> <silent> <F6> :bn<CR>
-" nnoremap <unique> <silent> <S-F6> :bd<CR>
-" nnoremap <unique> <silent> <S-L> :bn<CR>
-" nnoremap <unique> <silent> <S-H> :bp<CR>
-" nnoremap <silent> <S-Left> H
-" nnoremap <silent> <S-Right> L
 let g:bufExplorerDefaultHelp=1       " Do not show default help.
 let g:bufExplorerShowRelativePath=1  " Show relative paths.
 let g:bufExplorerSortBy='mru'        " Sort by most recently used.
@@ -474,24 +471,19 @@ let g:bufExplorerVersionWarn=1
 " DISABLE
 " autocmd BufWinEnter \[Buf\ List\] setl nonumber "打开BufExplorer时隐藏行号
 " \bs被exvim定义为CtrlPBuffer快捷键
-" 重新定义了下面3个快捷键之后，\be \bv会失效"
-" nnoremap <silent> <F7> :BufExplorer<CR>
-" nnoremap <silent> <A-F7> :BufExplorerHorizontalSplit<CR>
-" nnoremap <silent> <C-F7> :BufExplorerVerticalSplit<CR>
 " }BufExplorer
 
 " ---------------------------------------------------
-
-" vim tab
+" vim buffer and tab {
 " ---------------------------------------------------
+" buffer
 " <leader>bd is mapped EXbd by exvim
 nnoremap <unique> <silent> <F6>         :bp<CR>
 nnoremap <unique> <silent> <F7>         :bn<CR>
 nnoremap <unique> <silent> <leader>bd   :bd<CR>
 nnoremap <unique> <silent> <leader>bp   :bp<CR>
 nnoremap <unique> <silent> <leader>bn   :bn<CR>
-nnoremap <unique> <silent> <F10>        :tabnew<CR>
-nnoremap <unique> <silent> <S-F10>      :tabclose<CR>
+" tab
 nnoremap <unique> <silent> <leader>te   :tabedit<CR>
 nnoremap <unique> <silent> <leader>tc   :tabclose<CR>
 nnoremap <unique> <silent> <leader>tp   :tabp<CR>
