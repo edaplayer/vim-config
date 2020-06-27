@@ -346,7 +346,7 @@ let g:AutoPairsFlyMode=1
 " nerdtree{
 " ---------------------------------------------------
 map <F2> :NERDTreeToggle<CR>
-nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
 let NERDTreeChDirMode = 2
 " 箭头符号：▸ ▾ ◄ ► ▲ ▼ ◀ ▶ powerline和微软雅黑都能识别
 let NERDTreeAutoCenter=0
