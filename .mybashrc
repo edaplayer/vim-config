@@ -1,10 +1,14 @@
 # custom aliases
 alias rg='rg --no-heading'
 alias rgf='rg --no-heading --files -g'
+
+alias grep='grep -nr --color=auto'
+
 alias gg='git log -i --grep'
 alias gw='git whatchanged'
 alias gshow='git show'
 alias glog='git log'
+alias glogo='git log --oneline'
 alias ga='git add '
 alias gb='git branch'
 alias gba='git branch -a'
