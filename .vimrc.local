@@ -274,7 +274,7 @@ else
     let g:AutoPairsShortcutJump = '<M-N>'
     let g:AutoPairsShortcutBackInsert = '<M-B>'
 endif
-let g:AutoPairsFlyMode=1
+let g:AutoPairsFlyMode=0
 " }
 
 " nerdtree{
