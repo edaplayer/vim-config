@@ -101,7 +101,7 @@ if filereadable(expand(vimrc_plugs_local_path))
 endif
 call plug#end()
 
-if filereadable(expand(vimrc_plugs_path)) && g:enable_exvim_plugin
+if filereadable(expand(vimrc_plugs_path)) && exists('g:enable_exvim_plugin')
    exec 'source ' . fnameescape(vimrc_plugs_path)
 endif
 
