@@ -24,7 +24,6 @@ endif
 " colorscheme monokai
 colorscheme sublimemonokai
 " colorscheme monokain
-" set termguicolors
 " colorscheme monokai_pro
 if g:colors_name=='solarized'
     if &background=='dark'
@@ -167,7 +166,19 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " let g:airline_section_c = '%{expand("%:t")}' | " default  %t
 " }airline
 " ---------------------------------------------------
-
+" spaceline{
+let g:spaceline_colorscheme = 'dracula' "space dracula one
+let g:spaceline_seperate_style= 'arrow'
+set t_Co=16777216
+" let &t_8f='[38;2;%lu;%lu;%lum'
+" let &t_8b='[48;2;%lu;%lu;%lum'
+set termguicolors
+" spaceline}
+" ---------------------------------------------------
+" vim-buffet{
+let g:buffet_powerline_separators = 1
+" vim-buffet}
+" ---------------------------------------------------
 " UltiSnips{
 " ---------------------------------------------------
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
