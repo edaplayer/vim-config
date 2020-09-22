@@ -13,4 +13,6 @@ else
 	echo "source ~/.mybashrc" >> ~.bashrc
 fi
 
-cp *.vimr* ~/
+cur_time=$(date +%Y%m%d%H%M)
+mv ~/.vimrc ~/.vimrc_bak$cur_time
+cp *.vimrc* ~/
