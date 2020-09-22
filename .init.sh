@@ -9,10 +9,20 @@ if grep -q -e mybashrc ~/.bashrc ;then
 	echo Nothing to do.
 else
 	echo "Add mybashrc."
-	echo >> .bashrc
-	echo "source ~/.mybashrc" >> ~.bashrc
+	echo >> ~/.bashrc
+	cp .mybashrc ~/
+	echo "source ~/.mybashrc" >> ~/.bashrc
+fi
+
+
+if [ -e ~/.vim/autoload/plug.vim ] ;then
+	echo Nothing to do.
+else
+	echo "Add plug.vim"
+	mkdir -p ~/.vimr/autoload/
+	cp plug.vim ~/.vim/autoload/plug.vim
 fi
 
 cur_time=$(date +%Y%m%d%H%M)
 mv ~/.vimrc ~/.vimrc_bak$cur_time
-cp *.vimrc* ~/
+cp .vimrc* ~/
