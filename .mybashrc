@@ -35,10 +35,12 @@ normal=` echo -en "\033[00m"`
 git-branch () {
     GIT_BRANCH=`git branch 2>/dev/null | awk '$1 == "*"{branch=($4==""?$2:$2" "$4);print branch}'`
     GIT_BRANCH=${GIT_BRANCH:+"  $GIT_BRANCH"}
-	PS1='${debian_chroot:+($debian_chroot)}\[${green}\]\u@\h\[${normal}\]:\[${blue}\]\w\[${cyan}\]${GIT_BRANCH}\[${normal}\] \$ '
+	PS1='${debian_chroot:+($debian_chroot)}\[${green}\]\u@\[${normal}\]:\[${blue}\]\w\[${cyan}\]${GIT_BRANCH}\[${normal}\] \$ '
 }
 
 PROMPT_COMMAND="git-branch"
 
-PATH=$HOME/local/bin:$HOME/.local/bin/:$PATH
+ANDROID_NDK_HOME=$HOME/work/ndk/android-ndk-r21b
+export PATH=$ANDROID_NDK_HOME:$HOME/local/bin:$HOME/.local/bin/:$PATH
 export LD_LIBRARY_PATH=$HOME/local/lib:$HOME/.local/lib:$LD_LIBRARY_PATH
+
