@@ -230,7 +230,12 @@ let g:nerdtree_tabs_open_on_console_startup = 0
 " 当打开目录时运行NERDTree
 " autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 " }
-
+" ---------------------------------------------------
+" Startify{
+" ---------------------------------------------------
+let g:startify_change_to_dir = 0
+" }
+" ---------------------------------------------------
 " Tagbar{
 " tagbar会导致redir异常
 nmap <silent> <F4> :TagbarToggle<CR>
@@ -682,8 +687,7 @@ nnoremap <unique> <F9> :TogglePaste<CR>
 " 修复alt键的映射
 " fix meta-keys which generate <Esc>a .. <Esc>z
 " repeat each Meta-key.
-" if LINUX()
-if 0
+if LINUX()
     " ttimeoutlen值会影响esc后按下字母键的操作，设置超时时间为1ms
     set timeoutlen=1000 " Default 1000
     set ttimeout        " Default nottimeout, but if open timeout, ignore ttm
@@ -696,15 +700,21 @@ if 0
         " exec "inoremap ".c." <M-".toupper(c).">"
         let c = nr2char(1+char2nr(c))
     endw
-    " let s:systerm = system("uname -a")
-    let s:systerm = system("lsb_release -d")
+
+    let s:systerm = system("lsb_release -d -c")
+    let s:code = s:systerm
+
     if s:systerm =~ 'Ubuntu'
-        let s:code = system("lsb_release -c")
         if s:code =~ 'trusty'
             set <S-F1>=O1;2P
             set <S-F2>=O1;2Q
             set <S-F3>=O1;2R
             set <S-F4>=O1;2S
+        elseif s:code =~ 'precise'
+            set <S-F1>=[1;2P
+            set <S-F2>=[1;2Q
+            set <S-F3>=[1;2R
+            set <S-F4>=[1;2S
         endif
     elseif s:systerm =~ 'CentOS'
         set <S-F1>=[1;2P
