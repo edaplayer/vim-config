@@ -19,7 +19,7 @@ if [ -e ~/.vim/autoload/plug.vim ] ;then
 	echo Nothing to do.
 else
 	echo "Add plug.vim"
-	mkdir -p ~/.vimr/autoload/
+	mkdir -p ~/.vim/autoload/
 	cp plug.vim ~/.vim/autoload/plug.vim
 fi
 
