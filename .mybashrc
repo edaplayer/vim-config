@@ -41,6 +41,7 @@ git-branch () {
 PROMPT_COMMAND="git-branch"
 
 ANDROID_NDK_HOME=$HOME/work/ndk/android-ndk-r21b
-export PATH=$ANDROID_NDK_HOME:$HOME/local/bin:$HOME/.local/bin/:$PATH
-export LD_LIBRARY_PATH=$HOME/local/lib:$HOME/.local/lib:$LD_LIBRARY_PATH
+TOOLCHAIN=$HOME/work/ndk/toolchain
+export PATH=$TOOLCHAIN/bin:$ANDROID_NDK_HOME:$HOME/local/bin:$HOME/.local/bin/:$PATH
+export LD_LIBRARY_PATH=$TOOLCHAIN/lib:$HOME/local/lib:$HOME/.local/lib:$LD_LIBRARY_PATH
 
