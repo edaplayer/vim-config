@@ -34,7 +34,7 @@ white=`  echo -en "\033[01;37m"`
 normal=` echo -en "\033[00m"`
 git-branch () {
     GIT_BRANCH=`git branch 2>/dev/null | awk '$1 == "*"{branch=($4==""?$2:$2" "$4);print branch}'`
-    GIT_BRANCH=${GIT_BRANCH:+"  $GIT_BRANCH"}
+    GIT_BRANCH=${GIT_BRANCH:+" ($GIT_BRANCH)"}
 	PS1='${debian_chroot:+($debian_chroot)}\[${green}\]\u@\[${normal}\]:\[${blue}\]\w\[${cyan}\]${GIT_BRANCH}\[${normal}\] \$ '
 }
 
