@@ -32,6 +32,9 @@ if g:colors_name=='solarized'
     call togglebg#map("<C-F5>")
     unmap <F5>
 endif
+if has('termguicolors')
+    set termguicolors
+endif
 " }
 " ---------------------------------------------------
 " file code {
@@ -172,7 +175,6 @@ let g:spaceline_seperate_style= 'arrow'
 set t_Co=16777216
 " let &t_8f='[38;2;%lu;%lu;%lum'
 " let &t_8b='[48;2;%lu;%lu;%lum'
-set termguicolors
 " spaceline}
 " ---------------------------------------------------
 " vim-buffet{
