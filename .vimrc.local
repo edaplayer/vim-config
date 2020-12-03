@@ -46,7 +46,6 @@ set termencoding=utf-8
 
 " 关闭提示音
 " set noeb
-autocmd GuiEnter * set vb t_vb=
 set cul " 高亮光标所在行
 set cuc " 高亮光标所在列
 " hi CursorColumn term=reverse cterm=reverse ctermbg=Black ctermfg=LightGrey
@@ -55,24 +54,27 @@ set cuc " 高亮光标所在列
 " term=underline cterm=underline guibg=Grey9 会显示下划线，
 " 如果term和cterm指定其他选项（reverse、standout、bold），则高亮为条形框或者加粗"
 
-"状态栏显示，如果打开taglist会自动隐藏
 set wildmenu                           " 增强命令行补全，可用<C-N> <C-P>选择
-set wildmode=longest:full,list:full    " 命令行补全模式，最长字串优先
+set wildmode=longest:full,list:full    " 命令行补全模式，最长字串优先, 以逗号分隔，每次按wildchar(tab)切换
 set ruler      " 显示标尺
+" Tab缩进 {
 set autoindent " 自动缩进
 set cindent    " c缩进
-" Tab {
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-" 在行和段开始处使用制表符
-" set smarttab
-set noexpandtab
+" set smarttab                                      " 在行和段开始处使用制表符
+" set noexpandtab
 if has("autocmd")
-    autocmd FileType python set expandtab
+    augroup autocmd_config
+        au!
+        autocmd GuiEnter * set vb t_vb=             " 无响铃，无闪烁
+        autocmd FileType python set expandtab       " python空格缩进
+        autocmd FileType c,cpp,make set noexpandtab " c和cpp不使用空格缩进
+    augroup END
 endif
 " } Tab
-set wrap
+set wrap                                            " 超出textwidth自动换行
 let &showbreak='➣➣ '
 set ignorecase smartcase
 " 历史记录数
