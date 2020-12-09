@@ -609,7 +609,7 @@ map <unique> Q <ESC>:bd<CR>
 nnoremap <unique> <leader>Q <ESC>:qa!<CR>
 " 快速正则，查找替换，与 ex-searchcompl冲突
 nnoremap / /\v
-nnoremap <unique> <leader>vr :%s/\v<C-R><C-W>/g<left><left>
+nnoremap <unique> <leader>vr :%s/\v<C-R><C-W>//g<left><left>
 " 切换工作目录为当前文件路径
 nnoremap <unique> <silent> <leader>. :cd %:p:h<CR>
 " TAB切换窗口
