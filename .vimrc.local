@@ -44,8 +44,7 @@ set termencoding=utf-8
 " } file code
 " ---------------------------------------------------
 
-" 关闭提示音
-" set noeb
+" set noeb " 关闭提示音
 set cul " 高亮光标所在行
 set cuc " 高亮光标所在列
 " hi CursorColumn term=reverse cterm=reverse ctermbg=Black ctermfg=LightGrey
@@ -77,19 +76,14 @@ endif
 set wrap                                            " 超出textwidth自动换行
 let &showbreak='➣➣ '
 set ignorecase smartcase
-" 历史记录数
-set history=1000
-" 搜索逐字符高亮
+set history=1000                                    " 历史记录数
 set hlsearch
-set incsearch
-" 语言设置
-set langmenu=zh_CN.UTF-8
+set incsearch                                       " 搜索逐字符高亮
+set langmenu=zh_CN.UTF-8                            " 语言设置
 set helplang=cn
-" 总是显示状态行
-set laststatus=2
+set laststatus=2                                    " 总是显示状态行
 " 2:总显示最后一个窗口的状态行；设为1则窗口数多于一个的时候显示最后一个窗口的状态行；0不显示状态行
-" 禁用windows下的菜单快捷键alt
-set winaltkeys=no
+set winaltkeys=no                                   " 禁用windows下的菜单快捷键alt
 
 " statusline {
 set statusline=%0*[%n]                                  "buffernr
