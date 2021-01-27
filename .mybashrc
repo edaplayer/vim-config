@@ -2,7 +2,7 @@
 alias rg='rg --no-heading'
 alias rgf='rg --no-heading --files -g'
 
-alias grep='grep -nr --color=auto'
+alias grepn='grep -nr --color=auto'
 
 alias gg='git log -i --grep'
 alias gw='git whatchanged'
