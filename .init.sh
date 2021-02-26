@@ -25,7 +25,7 @@ fi
 
 cur_time=$(date +%Y%m%d%H%M)
 if [ -e ~/.vimrc ] ;then
-    mv ~/.vimrc ~/.vimrc_bak$cur_time
+    cp ~/.vimrc ~/.vimrc_bak$cur_time
 fi
 
 cp .vimrc* ~/
