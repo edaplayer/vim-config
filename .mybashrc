@@ -4,6 +4,8 @@ alias rgf='rg --no-heading --files -g'
 
 alias grepn='grep -nr --color=auto'
 
+alias cdg='cd `git rev-parse --show-toplevel`'
+
 alias gg='git log -i --grep'
 alias gw='git whatchanged'
 alias gshow='git show'
