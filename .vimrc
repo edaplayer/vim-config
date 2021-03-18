@@ -93,6 +93,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 let g:ex_tools_path = '~/.vim/tools/'
+
+let g:plug_url_format = 'https://git::@hub.fastgit.org/%s.git'
 call plug#begin('~/.vim/plugged')
 let vimrc_plugs_path = '~/.vimrc.plugs'
 let vimrc_plugs_local_path = '~/.vimrc.plugs.local'
