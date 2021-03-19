@@ -320,7 +320,7 @@ nnoremap <unique> <leader>lb :LeaderfBuffer<CR>
 nnoremap <unique> <leader>ll :LeaderfLine<CR>
 nnoremap <unique> <leader>lm :LeaderfMru<CR>
 nnoremap <unique> <leader>ls :LeaderfSelf<CR>
-nnoremap <unique> <leader>sf :vimgrep  %<left><left>
+nnoremap <unique> <leader>sf :vimgrep <C-R><C-W> %<BAR>copen<CR>
 nnoremap <unique> <leader>co :copen<CR>
 " } LeaderF
 
