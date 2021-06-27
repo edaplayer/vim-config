@@ -286,15 +286,15 @@ let g:LookupFile_AllowNewFiles = 0              "不允许创建不存在的文�
 " if filereadable("./filenametags")                "设置tag文件的名字
     " let g:LookupFile_TagExpr = '"./filenametags"'
 " endif
-"映射LookupFile为,lk
+" 映射LookupFile为,lk
 " nmap <unique> <silent> <leader>lk :LUTags<cr>
-"映射LUBufs为,lb
+" 映射LUBufs为,lb
 " nmap <unique> <silent> <leader>lb :LUBufs<cr>
-"映射LUWalk为,lw
+" 映射LUWalk为,lw
 " nmap <unique> <silent> <leader>lw :LUWalk<cr>
 " nnoremap <unique> <S-F5> :!genfiletags.sh<CR>
 
-" ctrlp
+" ctrlp {
 " ---------------------------------------------------
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPBuffer'
@@ -313,6 +313,7 @@ if LINUX()
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.gz,*.bz2     " MacOSX/Linux
     let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 endif
+" }
 
 " LeaderF {
 " ---------------------------------------------------
@@ -324,7 +325,7 @@ nnoremap <unique> <leader>sf :vimgrep <C-R><C-W> %<BAR>copen<CR>
 nnoremap <unique> <leader>co :copen<CR>
 " } LeaderF
 
-" BufExplorer{
+" BufExplorer {
 " ---------------------------------------------------
 let g:bufExplorerDefaultHelp=1       " Do not show default help.
 let g:bufExplorerShowRelativePath=1  " Show relative paths.
@@ -403,9 +404,9 @@ let g:winManagerWidth = 30
 " 在进入vim时自动打开winmanager
 let g:AutoOpenWinManager = 1
 
-" ctags_cscope
+" ctags_cscope {
 " ---------------------------------------------------
-map <F11> :! ctags -R --languages=c,javascript,java,python<CR>
+map <F11> :! ctags -R --languages=c,c++,javascript,java,python<CR>
 
 " 按F12，生成tags和cscope文件
 map <unique> <F12> :call Do_CsTag()<CR>
