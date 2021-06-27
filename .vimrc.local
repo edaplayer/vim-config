@@ -631,6 +631,11 @@ nnoremap <silent> <C-J> <C-W><down>
 nnoremap <silent> <C-K> <C-W><up>
 nnoremap <silent> <C-H> <C-W><left>
 nnoremap <silent> <C-L> <C-W><right>
+
+inoremap <silent> <C-J> <down>
+inoremap <silent> <C-K> <up>
+inoremap <silent> <C-H> <left>
+inoremap <silent> <C-L> <right>
 " nnoremap <silent> j jzz
 " nnoremap <silent> k kzz
 " nnoremap <silent> <C-F> <C-F>M
