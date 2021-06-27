@@ -236,7 +236,7 @@ let g:startify_change_to_dir = 0
 " ---------------------------------------------------
 " Tagbar{
 " tagbar会导致redir异常
-nmap <silent> <F4> :TagbarToggle<CR>
+nnoremap <unique> <F4> :TagbarToggle<CR>
 let g:tagbar_iconchars = ['▶', '▼']
 let g:tagbar_ctags_bin = 'ctags'
 let g:tagbar_autofocus = 1
@@ -632,10 +632,10 @@ nnoremap <silent> <C-K> <C-W><up>
 nnoremap <silent> <C-H> <C-W><left>
 nnoremap <silent> <C-L> <C-W><right>
 
-inoremap <silent> <C-J> <down>
-inoremap <silent> <C-K> <up>
-inoremap <silent> <C-H> <left>
-inoremap <silent> <C-L> <right>
+inoremap <unique> <C-J> <down>
+inoremap <unique> <C-K> <up>
+inoremap <unique> <C-H> <left>
+inoremap <unique> <C-L> <right>
 " nnoremap <silent> j jzz
 " nnoremap <silent> k kzz
 " nnoremap <silent> <C-F> <C-F>M
