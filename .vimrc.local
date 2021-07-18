@@ -618,6 +618,7 @@ nnoremap <silent> Q <ESC>:bd<CR>
 nnoremap <unique> <leader>Q <ESC>:qa!<CR>
 " 快速正则，查找替换，与 ex-searchcompl冲突
 nnoremap / /\v
+nnoremap <unique> <leader>r :%s/<C-R><C-W>//g<left><left>
 nnoremap <unique> <leader>vr :%s/\v<C-R><C-W>//g<left><left>
 " 切换工作目录为当前文件路径
 nnoremap <unique> <silent> <leader>. :cd %:p:h<CR>
@@ -689,7 +690,7 @@ function! s:TogglePaste()
 endfunction
 command TogglePaste :call s:TogglePaste()
 nnoremap <unique> <leader><leader>p :TogglePaste<CR>
-nnoremap <unique> <F9> :TogglePaste<CR>
+" nnoremap <unique> <F9> :TogglePaste<CR>
 
 " escalt.vim{
 " ---------------------------------------------------
@@ -741,8 +742,23 @@ if LINUX()
         set <S-F4>=[1;2S
     endif
 endif
-" }escalt
+" } escalt
 " ---------------------------------------------------
+
+" AsyncRun {
+set path=.
+" 自动打开 quickfix window ，高度为 6
+let g:asyncrun_open = 6
+
+" 任务结束时候响铃提醒
+let g:asyncrun_bell = 1
+nnoremap <unique> <F3> :AsyncRun -cwd=$(VIM_FILEDIR) cmake ../<cr>
+nnoremap <unique> <F5> :AsyncRun -cwd=$(VIM_FILEDIR) ./build.sh <cr>
+nnoremap <unique> <F9> :AsyncRun -cwd=$(VIM_FILEDIR) make <cr>
+
+" 设置 F10 打开/关闭 Quickfix 窗口
+nnoremap <unique> <F10> :call asyncrun#quickfix_toggle(6)<cr>
+" } AsyncRun
 
 " DEBUG
 " :set verbose=13

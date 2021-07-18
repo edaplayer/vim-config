@@ -84,6 +84,7 @@ Plug 'edaplayer/vim-sublime-monokai'
 Plug 'vim-scripts/VisIncr'
 
 " other
+Plug 'skywind3000/asyncrun.vim'
 Plug 'mhinz/vim-startify'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-unimpaired'
